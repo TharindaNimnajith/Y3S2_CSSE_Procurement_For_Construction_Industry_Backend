@@ -80,6 +80,10 @@ const deleteUsers = async (req, res) => {
     if (err)
       return res.status(500).send(err)
   })
+
+  return res.json({
+    message: 'Deleted Successfully'
+  })
 }
 
 const getUser = async (req, res, next) => {

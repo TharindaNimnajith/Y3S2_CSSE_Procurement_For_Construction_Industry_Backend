@@ -80,6 +80,10 @@ const deletePayments = async (req, res) => {
     if (err)
       return res.status(500).send(err)
   })
+
+  return res.json({
+    message: 'Deleted Successfully'
+  })
 }
 
 const getPayment = async (req, res, next) => {

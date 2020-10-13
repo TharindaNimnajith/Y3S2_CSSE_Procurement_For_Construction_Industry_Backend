@@ -5,7 +5,6 @@ const createOrders = async (req, res, next) => {
   const {
     purchaseDate,
     requestedDate,
-    siteId,
     siteName,
     siteManager,
     supplierName,
@@ -21,7 +20,6 @@ const createOrders = async (req, res, next) => {
   const OrdersItem = new Orders({
     purchaseDate,
     requestedDate,
-    siteId,
     siteName,
     siteManager,
     supplierName,
@@ -95,6 +93,10 @@ const deleteOrders = async (req, res) => {
   Orders.findByIdAndDelete((id), {}, (err) => {
     if (err)
       return res.status(500).send(err)
+  })
+
+  return res.json({
+    message: 'Deleted Successfully'
   })
 }
 

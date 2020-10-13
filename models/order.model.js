@@ -29,12 +29,6 @@ const OrderSchema = new Schema({
     unique: false,
     trim: true
   },
-  siteId: {
-    type: String,
-    required: false,
-    unique: false,
-    trim: true
-  },
   siteName: {
     type: String,
     required: false,
