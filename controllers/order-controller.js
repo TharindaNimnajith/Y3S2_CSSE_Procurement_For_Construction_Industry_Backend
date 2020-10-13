@@ -118,8 +118,49 @@ const getOrder = async (req, res, next) => {
   res.status(200).send(order)
 }
 
+
+
+const addInvoiceOrder = async (req, res, next) => {
+  let order
+
+  const {
+    id
+  } = req.params
+
+  const {
+    deliveryDate,
+    invoiceId,
+    supplierAmount
+  } = req.body
+
+  try {
+    order = await Orders.findById(id)
+  } catch (error) {
+    console.log(error)
+    return next(new HttpErrorsModel('Unexpected internal server error occurred, please try again later.', 500))
+  }
+
+  order.deliveryDate = deliveryDate
+  order.invoiceId = invoiceId
+  order.supplierAmount= supplierAmount
+  
+
+  try {
+    await order.save()
+  } catch (error) {
+    console.log(error)
+    return next(new HttpErrorsModel('Unexpected internal server error occurred, please try again later.', 500))
+  }
+
+  res.status(200).send({
+    message: 'Invoice order added successfully!'
+  })
+}
+
 exports.createOrders = createOrders
 exports.editOrders = editOrders
 exports.getOrders = getOrders
 exports.getOrder = getOrder
 exports.deleteOrders = deleteOrders
+exports.addInvoiceOrder = addInvoiceOrder
+
