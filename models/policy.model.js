@@ -13,10 +13,9 @@ const PolicySchema = new Schema({
   },
   property: {
     type: String,
-    required: false,
-    unique: false,
-    trim: true,
-    default: 'Approval Amount'
+    required: true,
+    unique: true,
+    trim: true
   },
   value: {
     type: String,

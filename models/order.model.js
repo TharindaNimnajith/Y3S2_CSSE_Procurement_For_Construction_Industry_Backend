@@ -8,7 +8,7 @@ const OrderSchema = new Schema({
   orderId: {
     type: Number,
     required: true,
-    unique: false,
+    unique: true,
     trim: true
   },
   purchaseDate: {
@@ -29,7 +29,7 @@ const OrderSchema = new Schema({
     unique: false,
     trim: true
   },
-  siteID: {
+  siteId: {
     type: String,
     required: false,
     unique: false,
@@ -47,13 +47,13 @@ const OrderSchema = new Schema({
     unique: false,
     trim: true
   },
-  supplier: {
+  supplierName: {
     type: String,
     required: false,
     unique: false,
     trim: true
   },
-  itemID: {
+  itemId: {
     type: Number,
     required: false,
     unique: false,
@@ -95,10 +95,10 @@ const OrderSchema = new Schema({
     unique: false,
     trim: true
   },
-  invoiceID: {
+  invoiceId: {
     type: String,
     required: false,
-    unique: false,
+    unique: true,
     trim: true
   }
 }, {

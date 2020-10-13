@@ -3,8 +3,7 @@ const Users = require('../models/user.model')
 
 const createUsers = async (req, res, next) => {
   const {
-    firstName,
-    lastName,
+    name,
     address,
     email,
     password,
@@ -12,8 +11,7 @@ const createUsers = async (req, res, next) => {
   } = req.body
 
   const UsersItem = new Users({
-    firstName,
-    lastName,
+    name,
     address,
     email,
     password,

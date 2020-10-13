@@ -25,19 +25,20 @@ const InventorySchema = new Schema({
   },
   unitsInStock: {
     type: String,
-    required: true,
+    required: false,
     unique: false,
-    trim: true
+    trim: true,
+    default: '0'
   },
   thresholdUnits: {
     type: String,
-    required: true,
+    required: false,
     unique: false,
     trim: true
   },
   status: {
     type: String,
-    required: true,
+    required: false,
     unique: false,
     trim: true
   },
@@ -51,7 +52,8 @@ const InventorySchema = new Schema({
     type: Boolean,
     required: false,
     unique: false,
-    trim: true
+    trim: true,
+    default: false
   }
 }, {
   timestamps: true,
