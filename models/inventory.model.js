@@ -36,12 +36,6 @@ const InventorySchema = new Schema({
     unique: false,
     trim: true
   },
-  status: {
-    type: String,
-    required: false,
-    unique: false,
-    trim: true
-  },
   description: {
     type: String,
     required: false,

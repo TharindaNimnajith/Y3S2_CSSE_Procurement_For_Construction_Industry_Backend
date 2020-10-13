@@ -7,7 +7,6 @@ const createInventories = async (req, res, next) => {
     unitPrice,
     unitsInStock,
     thresholdUnits,
-    status,
     description,
     isRestricted
   } = req.body
@@ -17,7 +16,6 @@ const createInventories = async (req, res, next) => {
     unitPrice,
     unitsInStock,
     thresholdUnits,
-    status,
     description,
     isRestricted
   })
