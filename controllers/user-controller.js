@@ -62,9 +62,10 @@ const editUsers = async (req, res) => {
   }
 
   Users.findOneAndUpdate(query, users, {upsert: true}, (err, item) => {
-    if (err) return res.send(500, {
-      error: err
-    })
+    if (err)
+      return res.send(500, {
+        error: err
+      })
     return res.json({
       users: item,
       message: 'Edited Successfully'
@@ -77,8 +78,9 @@ const deleteUsers = async (req, res) => {
     id
   } = req.body
 
-  Users.findByIdAndDelete((id), {}, (err, item) => {
-    if (err) return res.status(500).send(err)
+  Users.findByIdAndDelete((id), {}, (err) => {
+    if (err)
+      return res.status(500).send(err)
   })
 }
 

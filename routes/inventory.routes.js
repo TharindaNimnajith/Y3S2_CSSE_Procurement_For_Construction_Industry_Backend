@@ -3,10 +3,10 @@ const router = express.Router()
 
 const InventoryController = require('../controllers/inventory-controller')
 
-router.post('/create', InventoryController.createInventorys)
-router.get('/getInventorys', InventoryController.getInventorys)
-router.get('/getInventorys/:id', InventoryController.getInventory)
-router.put('/editInventorys', InventoryController.editInventorys)
-router.delete('/deleteInventorys', InventoryController.deleteInventorys)
+router.post('/create', InventoryController.createInventories)
+router.get('/getInventories', InventoryController.getInventories)
+router.get('/getInventories/:id', InventoryController.getInventory)
+router.put('/editInventories', InventoryController.editInventories)
+router.delete('/deleteInventories', InventoryController.deleteInventories)
 
 module.exports = router

@@ -2,7 +2,8 @@ const HttpError = require('../models/http-errors')
 const Orders = require('../models/order.model')
 
 const createOrders = async (req, res, next) => {
-  const {purchaseDate, 
+  const {
+    purchaseDate,
     requestedDate,
     siteID,
     siteName,
@@ -15,7 +16,6 @@ const createOrders = async (req, res, next) => {
     isRestricted,
     deliveryNote,
     status
-
   } = req.body
 
   const OrdersItem = new Orders({
@@ -38,38 +38,63 @@ const createOrders = async (req, res, next) => {
     await OrdersItem.save()
   } catch (err) {
     const error = new HttpError('Adding failed, please try again.', 500)
-    res.json({message: 'Adding failed, please try again.', added: 0})
+    res.json({
+      message: 'Adding failed, please try again.',
+      added: 0
+    })
     return next(error)
   }
 
   res.status(201).json({
-    ordersItem: OrdersItem.toObject({getters: true}),
+    ordersItem: OrdersItem.toObject({
+      getters: true
+    }),
     message: 'Added Successfully',
     added: 1
   })
 }
 
-const getOrders = async (req, res, next) => {
+const getOrders = async (req, res) => {
   Orders.find({})
     .then((orders) =>
-      res.json({orders: orders, message: 'got results'})
+      res.json({
+        orders: orders,
+        message: 'Retrieved Successfully'
+      })
     )
     .catch((err) => res.status(400).json('Error: ' + err))
 }
 
-const editOrders = async (req, res, next) => {
-  const {orders, id} = req.body
-  const query = {'_id': id}
+const editOrders = async (req, res) => {
+  const {
+    orders,
+    id
+  } = req.body
+
+  const query = {
+    '_id': id
+  }
+
   Orders.findOneAndUpdate(query, orders, {upsert: true}, (err, item) => {
-    if (err) return res.send(500, {error: err})
-    return res.json({orders: item, message: 'got results'})
+    if (err)
+      return res.send(500, {
+        error: err
+      })
+    return res.json({
+      orders: item,
+      message: 'Edited Successfully'
+    })
   })
 }
 
-const deleteOrders = async (req, res, next) => {
-  const {id} = req.body
-  Orders.findByIdAndDelete((id), {}, (err, item) => {
-    if (err) return res.status(500).send(err)
+const deleteOrders = async (req, res) => {
+  const {
+    id
+  } = req.body
+
+  Orders.findByIdAndDelete((id), {}, (err) => {
+    if (err)
+      return res.status(500).send(err)
   })
 }
 

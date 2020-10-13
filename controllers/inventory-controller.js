@@ -1,11 +1,19 @@
 const HttpError = require('../models/http-errors')
-const Inventorys = require('../models/inventory.model')
+const Inventories = require('../models/inventory.model')
 
-const createInventorys = async (req, res, next) => {
-  const {itemName, unitPrice, unitsInStock, thresholdUnits, status, description, isRestricted} = req.body
+const createInventories = async (req, res, next) => {
+  const {
+    itemName,
+    unitPrice,
+    unitsInStock,
+    thresholdUnits,
+    status,
+    description,
+    isRestricted
+  } = req.body
 
-  const InventorysItem = new Inventorys({
-    itemName, 
+  const InventoriesItem = new Inventories({
+    itemName,
     unitPrice,
     unitsInStock,
     thresholdUnits,
@@ -15,41 +23,66 @@ const createInventorys = async (req, res, next) => {
   })
 
   try {
-    await InventorysItem.save()
+    await InventoriesItem.save()
   } catch (err) {
     const error = new HttpError('Adding failed, please try again.', 500)
-    res.json({message: 'Adding failed, please try again.', added: 0})
+    res.json({
+      message: 'Adding failed, please try again.',
+      added: 0
+    })
     return next(error)
   }
 
   res.status(201).json({
-    inventorysItem: InventorysItem.toObject({getters: true}),
+    inventoriesItem: InventoriesItem.toObject({
+      getters: true
+    }),
     message: 'Added Successfully',
     added: 1
   })
 }
 
-const getInventorys = async (req, res, next) => {
-  Inventorys.find({})
-    .then((inventorys) =>
-      res.json({inventorys: inventorys, message: 'got results'})
+const getInventories = async (req, res) => {
+  Inventories.find({})
+    .then((inventories) =>
+      res.json({
+        inventories: inventories,
+        message: 'Retrieved Successfully'
+      })
     )
     .catch((err) => res.status(400).json('Error: ' + err))
 }
 
-const editInventorys = async (req, res, next) => {
-  const {inventorys, id} = req.body
-  const query = {'_id': id}
-  Inventorys.findOneAndUpdate(query, inventorys, {upsert: true}, (err, item) => {
-    if (err) return res.send(500, {error: err})
-    return res.json({inventorys: item, message: 'got results'})
+const editInventories = async (req, res) => {
+  const {
+    inventories,
+    id
+  } = req.body
+
+  const query = {
+    '_id': id
+  }
+
+  Inventories.findOneAndUpdate(query, inventories, {upsert: true}, (err, item) => {
+    if (err)
+      return res.send(500, {
+        error: err
+      })
+    return res.json({
+      inventories: item,
+      message: 'Edited Successfully'
+    })
   })
 }
 
-const deleteInventorys = async (req, res, next) => {
-  const {id} = req.body
-  Inventorys.findByIdAndDelete((id), {}, (err, item) => {
-    if (err) return res.status(500).send(err)
+const deleteInventories = async (req, res) => {
+  const {
+    id
+  } = req.body
+
+  Inventories.findByIdAndDelete((id), {}, (err) => {
+    if (err)
+      return res.status(500).send(err)
   })
 }
 
@@ -61,7 +94,7 @@ const getInventory = async (req, res, next) => {
   } = req.params
 
   try {
-    inventory = await Inventorys.findById(id)
+    inventory = await Inventories.findById(id)
   } catch (error) {
     console.log(error)
     return next(new HttpError('Unexpected internal server error occurred, please try again later.', 500))
@@ -70,8 +103,8 @@ const getInventory = async (req, res, next) => {
   res.status(200).send(inventory)
 }
 
-exports.createInventorys = createInventorys
-exports.editInventorys = editInventorys
-exports.getInventorys = getInventorys
+exports.createInventories = createInventories
+exports.editInventories = editInventories
+exports.getInventories = getInventories
 exports.getInventory = getInventory
-exports.deleteInventorys = deleteInventorys
+exports.deleteInventories = deleteInventories
