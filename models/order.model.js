@@ -92,9 +92,16 @@ const OrderSchema = new Schema({
   invoiceId: {
     type: String,
     required: false,
-    unique: true,
+    unique: false,
+    trim: true
+  },
+  supplierAmount: {
+    type: String,
+    required: false,
+    unique: false,
     trim: true
   }
+
 }, {
   timestamps: true,
   collection: 'Order'

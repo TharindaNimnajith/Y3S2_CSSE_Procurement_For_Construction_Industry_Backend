@@ -35,6 +35,7 @@ const createOrders = async (req, res, next) => {
   try {
     await OrdersItem.save()
   } catch (err) {
+    console.log(err)
     const error = new HttpError('Adding failed, please try again.', 500)
     res.json({
       message: 'Adding failed, please try again.',
