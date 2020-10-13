@@ -1,0 +1,76 @@
+const HttpError = require('../models/http-errors')
+const Payments = require('../models/payment.model')
+
+const createPayments = async (req, res, next) => {
+  const {invoiceId, orderId, paymentMethod,supplier,amount} = req.body
+
+  const PaymentsItem = new Payments({
+    invoiceId,
+     orderId, 
+     paymentMethod,
+     supplier,
+     amount
+  })
+
+  try {
+    await PaymentsItem.save()
+  } catch (err) {
+    const error = new HttpError('Adding failed, please try again.', 500)
+    res.json({message: 'Adding failed, please try again.', added: 0})
+    return next(error)
+  }
+
+  res.status(201).json({
+    paymentsItem: PaymentsItem.toObject({getters: true}),
+    message: 'Added Successfully',
+    added: 1
+  })
+}
+
+const getPayments = async (req, res, next) => {
+  Payments.find({})
+    .then((payments) =>
+      res.json({payments: payments, message: 'got results'})
+    )
+    .catch((err) => res.status(400).json('Error: ' + err))
+}
+
+const editPayments = async (req, res, next) => {
+  const {payments, id} = req.body
+  const query = {'_id': id}
+  Payments.findOneAndUpdate(query, payments, {upsert: true}, (err, item) => {
+    if (err) return res.send(500, {error: err})
+    return res.json({payments: item, message: 'got results'})
+  })
+}
+
+const deletePayments = async (req, res, next) => {
+  const {id} = req.body
+  Payments.findByIdAndDelete((id), {}, (err, item) => {
+    if (err) return res.status(500).send(err)
+  })
+}
+
+const getPayment = async (req, res, next) => {
+  let payment
+
+  const {
+    id
+  } = req.params
+
+  try {
+    payment = await Payments.findById(id)
+  } catch (error) {
+    console.log(error)
+    return next(new HttpError('Unexpected internal server error occurred, please try again later.', 500))
+  }
+
+  res.status(200).send(payment)
+}
+
+exports.createPayments = createPayments
+exports.editPayments = editPayments
+exports.getPayments = getPayments
+exports.getPayment = getPayment
+exports.deletePayments = deletePayments
+
