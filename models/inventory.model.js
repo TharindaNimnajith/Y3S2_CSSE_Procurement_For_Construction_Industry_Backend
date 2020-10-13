@@ -1,0 +1,74 @@
+const mongoose = require('mongoose')
+const autoIncrement = require('mongoose-auto-increment')
+const uniqueValidator = require('mongoose-unique-validator')
+
+const Schema = mongoose.Schema
+
+
+const InventorySchema = new Schema({
+  itemId: {
+    type: Number,
+    required: false,
+    unique: true,
+    trim: true
+  },
+  itemName: {
+    type: String,
+    required: true,
+    unique: false,
+    trim: true
+  },
+ unitPrice: {
+    type: String,
+    required: true,
+    unique: false,
+    trim: true
+  },
+  unitsInStock: {
+    type: String,
+    required: true,
+    unique: false,
+    trim: true
+  },
+  thersholdUnits: {
+    type: String,
+    required: true,
+    unique: false,
+    trim: true
+  },
+  status: {
+    type:String,
+    required: true,
+    unique: false,
+    trim: true
+  },
+  description: {
+    type: String,
+    required:false,
+    unique: false,
+    trim: true
+  },
+  
+  isRestricted: {
+    type: Boolean,
+    required: false,
+    unique: false,
+    trim: true
+  }
+}, {
+  timestamps: true,
+  collection: 'Inventory'
+})
+
+InventorySchema.plugin(uniqueValidator)
+
+autoIncrement.initialize(mongoose.connection)
+
+InventorySchema.plugin(autoIncrement.plugin, {
+  model: 'Inventory',
+  field: 'itemId',
+  startAt: 1000,
+  incrementBy: 1
+})
+
+module.exports = mongoose.model('Inventory', InventorySchema)
