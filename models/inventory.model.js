@@ -4,7 +4,6 @@ const uniqueValidator = require('mongoose-unique-validator')
 
 const Schema = mongoose.Schema
 
-
 const InventorySchema = new Schema({
   itemId: {
     type: Number,
@@ -18,7 +17,7 @@ const InventorySchema = new Schema({
     unique: false,
     trim: true
   },
- unitPrice: {
+  unitPrice: {
     type: String,
     required: true,
     unique: false,
@@ -30,25 +29,24 @@ const InventorySchema = new Schema({
     unique: false,
     trim: true
   },
-  thersholdUnits: {
+  thresholdUnits: {
     type: String,
     required: true,
     unique: false,
     trim: true
   },
   status: {
-    type:String,
+    type: String,
     required: true,
     unique: false,
     trim: true
   },
   description: {
     type: String,
-    required:false,
+    required: false,
     unique: false,
     trim: true
   },
-  
   isRestricted: {
     type: Boolean,
     required: false,

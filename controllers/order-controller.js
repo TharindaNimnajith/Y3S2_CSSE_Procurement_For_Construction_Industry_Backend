@@ -12,7 +12,7 @@ const createOrders = async (req, res, next) => {
     itemName,
     itemQuantity,
     totPrice,
-    isRestriceted,
+    isRestricted,
     deliveryNote,
     status
 
@@ -29,10 +29,9 @@ const createOrders = async (req, res, next) => {
     itemName,
     itemQuantity,
     totPrice,
-    isRestriceted,
+    isRestricted,
     deliveryNote,
     status
-
   })
 
   try {
@@ -96,4 +95,3 @@ exports.editOrders = editOrders
 exports.getOrders = getOrders
 exports.getOrder = getOrder
 exports.deleteOrders = deleteOrders
-

@@ -4,7 +4,6 @@ const uniqueValidator = require('mongoose-unique-validator')
 
 const Schema = mongoose.Schema
 
-
 const OrderSchema = new Schema({
   orderId: {
     type: Number,
@@ -78,7 +77,7 @@ const OrderSchema = new Schema({
     unique: false,
     trim: true
   },
-  isRestriceted: {
+  isRestricted: {
     type: Boolean,
     required: false,
     unique: false,
@@ -102,7 +101,6 @@ const OrderSchema = new Schema({
     unique: false,
     trim: true
   }
- 
 }, {
   timestamps: true,
   collection: 'Order'

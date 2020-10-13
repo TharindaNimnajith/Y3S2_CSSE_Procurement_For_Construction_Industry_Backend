@@ -4,7 +4,6 @@ const uniqueValidator = require('mongoose-unique-validator')
 
 const Schema = mongoose.Schema
 
-
 const PaymentSchema = new Schema({
   paymentId: {
     type: Number,
@@ -18,7 +17,7 @@ const PaymentSchema = new Schema({
     unique: false,
     trim: true
   },
- orderId: {
+  orderId: {
     type: String,
     required: true,
     unique: false,
@@ -29,7 +28,7 @@ const PaymentSchema = new Schema({
     required: true,
     unique: false,
     trim: true,
-    default:"Cash"
+    default: 'Cash'
   },
   supplier: {
     type: String,
@@ -38,7 +37,7 @@ const PaymentSchema = new Schema({
     trim: true
   },
   amount: {
-    type:String,
+    type: String,
     required: true,
     unique: false,
     trim: true

@@ -4,7 +4,6 @@ const uniqueValidator = require('mongoose-unique-validator')
 
 const Schema = mongoose.Schema
 
-
 const PolicySchema = new Schema({
   policyId: {
     type: Number,
@@ -17,9 +16,9 @@ const PolicySchema = new Schema({
     required: false,
     unique: false,
     trim: true,
-    default:"Approval Amount"
+    default: 'Approval Amount'
   },
-value: {
+  value: {
     type: String,
     required: true,
     unique: false,

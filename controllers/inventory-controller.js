@@ -2,13 +2,13 @@ const HttpError = require('../models/http-errors')
 const Inventorys = require('../models/inventory.model')
 
 const createInventorys = async (req, res, next) => {
-  const {itemName, unitPrice,unitsInStock,thersholdUnits,status,description,isRestricted} = req.body
+  const {itemName, unitPrice, unitsInStock, thresholdUnits, status, description, isRestricted} = req.body
 
   const InventorysItem = new Inventorys({
     itemName, 
     unitPrice,
     unitsInStock,
-    thersholdUnits,
+    thresholdUnits,
     status,
     description,
     isRestricted
@@ -75,4 +75,3 @@ exports.editInventorys = editInventorys
 exports.getInventorys = getInventorys
 exports.getInventory = getInventory
 exports.deleteInventorys = deleteInventorys
-
