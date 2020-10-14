@@ -64,6 +64,38 @@ const getOrders = async (req, res) => {
     .catch((err) => res.status(400).json('Error: ' + err));
 };
 
+const editOrderStatus = async (req, res, next) => {
+  let order;
+
+  const {
+    orderId,
+    status
+  } = req.body;
+
+  try {
+    order = await Orders.findOne({
+      orderId: orderId
+    });
+  } catch (error) {
+    console.log(error);
+    return next(new HttpError('Unexpected internal server error occurred, please try again later.', 500));
+  }
+
+  order.status = status;
+
+  try {
+    await order.save();
+  } catch (err) {
+    console.log(err);
+    const error = new HttpError('Updating failed, please try again.', 500);
+    return next(error);
+  }
+
+  return res.json({
+    message: 'Order status updated successfully'
+  });
+};
+
 const editOrders = async (req, res) => {
   const {
     orders,
@@ -162,4 +194,4 @@ exports.getOrders = getOrders;
 exports.getOrder = getOrder;
 exports.deleteOrders = deleteOrders;
 exports.addInvoiceOrder = addInvoiceOrder;
-
+exports.editOrderStatus = editOrderStatus;

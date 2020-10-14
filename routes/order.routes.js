@@ -9,5 +9,6 @@ router.get('/getOrders/:id', OrderController.getOrder);
 router.put('/editOrders', OrderController.editOrders);
 router.delete('/deleteOrders', OrderController.deleteOrders);
 router.post('/addInvoiceOrder/:id', OrderController.addInvoiceOrder);
+router.put('/editOrderStatus', OrderController.editOrderStatus);
 
 module.exports = router;
