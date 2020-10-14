@@ -1,8 +1,8 @@
-const mongoose = require('mongoose')
-const autoIncrement = require('mongoose-auto-increment')
-const uniqueValidator = require('mongoose-unique-validator')
+const mongoose = require('mongoose');
+const autoIncrement = require('mongoose-auto-increment');
+const uniqueValidator = require('mongoose-unique-validator');
 
-const Schema = mongoose.Schema
+const Schema = mongoose.Schema;
 
 const OrderSchema = new Schema({
   orderId: {
@@ -104,17 +104,17 @@ const OrderSchema = new Schema({
 }, {
   timestamps: true,
   collection: 'Order'
-})
+});
 
-OrderSchema.plugin(uniqueValidator)
+OrderSchema.plugin(uniqueValidator);
 
-autoIncrement.initialize(mongoose.connection)
+autoIncrement.initialize(mongoose.connection);
 
 OrderSchema.plugin(autoIncrement.plugin, {
   model: 'Order',
   field: 'orderId',
   startAt: 10000,
   incrementBy: 1
-})
+});
 
-module.exports = mongoose.model('Order', OrderSchema)
+module.exports = mongoose.model('Order', OrderSchema);

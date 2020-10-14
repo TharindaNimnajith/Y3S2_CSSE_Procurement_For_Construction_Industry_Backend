@@ -1,8 +1,8 @@
-const mongoose = require('mongoose')
-const autoIncrement = require('mongoose-auto-increment')
-const uniqueValidator = require('mongoose-unique-validator')
+const mongoose = require('mongoose');
+const autoIncrement = require('mongoose-auto-increment');
+const uniqueValidator = require('mongoose-unique-validator');
 
-const Schema = mongoose.Schema
+const Schema = mongoose.Schema;
 
 const InventorySchema = new Schema({
   itemId: {
@@ -52,17 +52,17 @@ const InventorySchema = new Schema({
 }, {
   timestamps: true,
   collection: 'Inventory'
-})
+});
 
-InventorySchema.plugin(uniqueValidator)
+InventorySchema.plugin(uniqueValidator);
 
-autoIncrement.initialize(mongoose.connection)
+autoIncrement.initialize(mongoose.connection);
 
 InventorySchema.plugin(autoIncrement.plugin, {
   model: 'Inventory',
   field: 'itemId',
   startAt: 1000,
   incrementBy: 1
-})
+});
 
-module.exports = mongoose.model('Inventory', InventorySchema)
+module.exports = mongoose.model('Inventory', InventorySchema);

@@ -1,26 +1,26 @@
-const HttpError = require('../models/http-errors')
-const Policies = require('../models/policy.model')
+const HttpError = require('../models/http-errors');
+const Policies = require('../models/policy.model');
 
 const createPolicies = async (req, res, next) => {
   const {
     property,
     value
-  } = req.body
+  } = req.body;
 
   const PoliciesItem = new Policies({
     property,
     value
-  })
+  });
 
   try {
-    await PoliciesItem.save()
+    await PoliciesItem.save();
   } catch (err) {
-    const error = new HttpError('Adding failed, please try again.', 500)
+    const error = new HttpError('Adding failed, please try again.', 500);
     res.json({
       message: 'Adding failed, please try again.',
       added: 0
-    })
-    return next(error)
+    });
+    return next(error);
   }
 
   res.status(201).json({
@@ -29,8 +29,8 @@ const createPolicies = async (req, res, next) => {
     }),
     message: 'Added Successfully',
     added: 1
-  })
-}
+  });
+};
 
 const getPolicies = async (req, res) => {
   Policies.find({})
@@ -40,65 +40,65 @@ const getPolicies = async (req, res) => {
         message: 'Retrieved Successfully'
       })
     )
-    .catch((err) => res.status(400).json('Error: ' + err))
-}
+    .catch((err) => res.status(400).json('Error: ' + err));
+};
 
 const editPolicies = async (req, res) => {
   const {
     policies,
     id
-  } = req.body
+  } = req.body;
 
   const query = {
     '_id': id
-  }
+  };
 
-  Policies.findOneAndUpdate(query, policies, {upsert: true}, (err, item) => {
+  Policies.findOneAndUpdate(query, policies, { upsert: true }, (err, item) => {
     if (err)
       return res.send(500, {
         error: err
-      })
+      });
     return res.json({
       policies: item,
       message: 'Edited Successfully'
-    })
-  })
-}
+    });
+  });
+};
 
 const deletePolicies = async (req, res) => {
   const {
     id
-  } = req.body
+  } = req.body;
 
   Policies.findByIdAndDelete((id), {}, (err) => {
     if (err)
-      return res.status(500).send(err)
-  })
+      return res.status(500).send(err);
+  });
 
   return res.json({
     message: 'Deleted Successfully'
-  })
-}
+  });
+};
 
 const getPolicy = async (req, res, next) => {
-  let policy
+  let policy;
 
   const {
     id
-  } = req.params
+  } = req.params;
 
   try {
-    policy = await Policies.findById(id)
+    policy = await Policies.findById(id);
   } catch (error) {
-    console.log(error)
-    return next(new HttpError('Unexpected internal server error occurred, please try again later.', 500))
+    console.log(error);
+    return next(new HttpError('Unexpected internal server error occurred, please try again later.', 500));
   }
 
-  res.status(200).send(policy)
-}
+  res.status(200).send(policy);
+};
 
-exports.createPolicies = createPolicies
-exports.editPolicies = editPolicies
-exports.getPolicies = getPolicies
-exports.getPolicy = getPolicy
-exports.deletePolicies = deletePolicies
+exports.createPolicies = createPolicies;
+exports.editPolicies = editPolicies;
+exports.getPolicies = getPolicies;
+exports.getPolicy = getPolicy;
+exports.deletePolicies = deletePolicies;

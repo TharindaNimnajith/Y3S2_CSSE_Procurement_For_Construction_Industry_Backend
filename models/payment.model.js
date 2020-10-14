@@ -1,8 +1,8 @@
-const mongoose = require('mongoose')
-const autoIncrement = require('mongoose-auto-increment')
-const uniqueValidator = require('mongoose-unique-validator')
+const mongoose = require('mongoose');
+const autoIncrement = require('mongoose-auto-increment');
+const uniqueValidator = require('mongoose-unique-validator');
 
-const Schema = mongoose.Schema
+const Schema = mongoose.Schema;
 
 const PaymentSchema = new Schema({
   paymentId: {
@@ -45,17 +45,17 @@ const PaymentSchema = new Schema({
 }, {
   timestamps: true,
   collection: 'Payment'
-})
+});
 
-PaymentSchema.plugin(uniqueValidator)
+PaymentSchema.plugin(uniqueValidator);
 
-autoIncrement.initialize(mongoose.connection)
+autoIncrement.initialize(mongoose.connection);
 
 PaymentSchema.plugin(autoIncrement.plugin, {
   model: 'Payment',
   field: 'paymentId',
   startAt: 1,
   incrementBy: 1
-})
+});
 
-module.exports = mongoose.model('Payment', PaymentSchema)
+module.exports = mongoose.model('Payment', PaymentSchema);
