@@ -101,7 +101,6 @@ const OrderSchema = new Schema({
     unique: false,
     trim: true
   }
-
 }, {
   timestamps: true,
   collection: 'Order'

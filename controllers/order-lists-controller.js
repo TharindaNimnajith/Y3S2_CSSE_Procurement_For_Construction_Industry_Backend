@@ -17,7 +17,7 @@ const  getPendingOrders = async (req,res,next) => {
       
     } catch (error) {
       console.log(error)
-      return next(new HttpErrorsModel('Unexpected internal server error occurred, please try again later.', 500))
+      return next(new HttpError('Unexpected internal server error occurred, please try again later.', 500))
     }
     res.status(200).send(orderList);
      
@@ -41,7 +41,7 @@ const  getPendingOrders = async (req,res,next) => {
       
     } catch (error) {
       console.log(error)
-      return next(new HttpErrorsModel('Unexpected internal server error occurred, please try again later.', 500))
+      return next(new HttpError('Unexpected internal server error occurred, please try again later.', 500))
     }
     res.status(200).send(orderList);
      
@@ -64,7 +64,7 @@ const  getPendingOrders = async (req,res,next) => {
       
     } catch (error) {
       console.log(error)
-      return next(new HttpErrorsModel('Unexpected internal server error occurred, please try again later.', 500))
+      return next(new HttpError('Unexpected internal server error occurred, please try again later.', 500))
     }
     res.status(200).send(orderList);
      
@@ -93,7 +93,7 @@ const  getPendingOrders = async (req,res,next) => {
       
     } catch (error) {
       console.log(error)
-      return next(new HttpErrorsModel('Unexpected internal server error occurred, please try again later.', 500))
+      return next(new HttpError('Unexpected internal server error occurred, please try again later.', 500))
     }
     res.status(200).send(orderList);
      
@@ -122,7 +122,7 @@ const  getPendingOrders = async (req,res,next) => {
       
     } catch (error) {
       console.log(error)
-      return next(new HttpErrorsModel('Unexpected internal server error occurred, please try again later.', 500))
+      return next(new HttpError('Unexpected internal server error occurred, please try again later.', 500))
     }
     res.status(200).send(orderList);
      
@@ -151,7 +151,7 @@ const  getPendingOrders = async (req,res,next) => {
       
     } catch (error) {
       console.log(error)
-      return next(new HttpErrorsModel('Unexpected internal server error occurred, please try again later.', 500))
+      return next(new HttpError('Unexpected internal server error occurred, please try again later.', 500))
     }
     res.status(200).send(orderList);
      
@@ -175,7 +175,7 @@ const  getPendingOrders = async (req,res,next) => {
       
     } catch (error) {
       console.log(error)
-      return next(new HttpErrorsModel('Unexpected internal server error occurred, please try again later.', 500))
+      return next(new HttpError('Unexpected internal server error occurred, please try again later.', 500))
     }
     res.status(200).send(orderList);
      
@@ -198,7 +198,7 @@ const  getPendingOrders = async (req,res,next) => {
       
     } catch (error) {
       console.log(error)
-      return next(new HttpErrorsModel('Unexpected internal server error occurred, please try again later.', 500))
+      return next(new HttpError('Unexpected internal server error occurred, please try again later.', 500))
     }
     res.status(200).send(orderList);
      
@@ -222,7 +222,7 @@ const  getPendingOrders = async (req,res,next) => {
       
     } catch (error) {
       console.log(error)
-      return next(new HttpErrorsModel('Unexpected internal server error occurred, please try again later.', 500))
+      return next(new HttpError('Unexpected internal server error occurred, please try again later.', 500))
     }
     res.status(200).send(orderList);
      
@@ -246,7 +246,7 @@ const  getPendingOrders = async (req,res,next) => {
       
     } catch (error) {
       console.log(error)
-      return next(new HttpErrorsModel('Unexpected internal server error occurred, please try again later.', 500))
+      return next(new HttpError('Unexpected internal server error occurred, please try again later.', 500))
     }
     res.status(200).send(orderList);
      

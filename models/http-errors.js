@@ -3,11 +3,9 @@ class HttpError extends Error {
     super(message)
     this._code = errorCode
   }
-
   get code() {
     return this._code
   }
-
   set code(code) {
     this._code = code
   }

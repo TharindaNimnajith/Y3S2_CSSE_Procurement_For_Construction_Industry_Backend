@@ -137,7 +137,7 @@ const addInvoiceOrder = async (req, res, next) => {
     order = await Orders.findById(id)
   } catch (error) {
     console.log(error)
-    return next(new HttpErrorsModel('Unexpected internal server error occurred, please try again later.', 500))
+    return next(new HttpError('Unexpected internal server error occurred, please try again later.', 500))
   }
 
   order.deliveryDate = deliveryDate
@@ -149,7 +149,7 @@ const addInvoiceOrder = async (req, res, next) => {
     await order.save()
   } catch (error) {
     console.log(error)
-    return next(new HttpErrorsModel('Unexpected internal server error occurred, please try again later.', 500))
+    return next(new HttpError('Unexpected internal server error occurred, please try again later.', 500))
   }
 
   res.status(200).send({

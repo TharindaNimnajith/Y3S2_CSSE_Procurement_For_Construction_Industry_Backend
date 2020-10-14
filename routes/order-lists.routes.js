@@ -3,7 +3,6 @@ const router = express.Router()
 
 const OrdersController = require('../controllers/order-lists-controller')
 
-
 router.get('/getPendingOrders', OrdersController.getPendingOrders)
 router.get('/getApprovedPurchasedOrders', OrdersController.getApprovedPurchasedOrders)
 router.get('/getRejectedPurchasedOrders', OrdersController.getRejectedPurchasedOrders)
@@ -14,6 +13,5 @@ router.get('/getDeliveryOrdersDManager', OrdersController.getDeliveryOrdersDMana
 router.get('/getDeliveryConfirmedDManager', OrdersController.getDeliveryConfirmedDManager)
 router.get('/getDeliveryRejectedDManager', OrdersController.getDeliveryRejectedDManager)
 router.get('/getDeliveredOrdersAllSuppliers', OrdersController.getDeliveredOrdersAllSuppliers)
-
 
 module.exports = router
