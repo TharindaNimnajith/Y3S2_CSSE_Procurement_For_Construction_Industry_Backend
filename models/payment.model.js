@@ -13,7 +13,7 @@ const PaymentSchema = new Schema({
   },
   invoiceId: {
     type: String,
-    required: true,
+    required: false,
     unique: false,
     trim: true
   },
@@ -38,7 +38,7 @@ const PaymentSchema = new Schema({
   },
   amount: {
     type: String,
-    required: true,
+    required: false,
     unique: false,
     trim: true
   }
