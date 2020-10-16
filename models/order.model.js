@@ -23,6 +23,12 @@ const OrderSchema = new Schema({
     unique: false,
     trim: true
   },
+  requiredDate: {
+    type: String,
+    required: false,
+    unique: false,
+    trim: true
+  },
   deliveryDate: {
     type: String,
     required: false,
