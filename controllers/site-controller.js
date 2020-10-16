@@ -103,5 +103,3 @@ exports.editSites = editSites;
 exports.getSites = getSites;
 exports.getSite = getSite;
 exports.deleteSites = deleteSites;
-exports.addInvoiceSite = addInvoiceSite;
-exports.editSiteStatus = editSiteStatus;

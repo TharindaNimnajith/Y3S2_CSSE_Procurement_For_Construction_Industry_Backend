@@ -28,11 +28,11 @@ const SiteSchema = new Schema({
   collection: 'Site'
 });
 
-PolicySchema.plugin(uniqueValidator);
+SiteSchema.plugin(uniqueValidator);
 
 autoIncrement.initialize(mongoose.connection);
 
-PolicySchema.plugin(autoIncrement.plugin, {
+SiteSchema.plugin(autoIncrement.plugin, {
   model: 'Site',
   field: 'siteId',
   startAt: 1,
