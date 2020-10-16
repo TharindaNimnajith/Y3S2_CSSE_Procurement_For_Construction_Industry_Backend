@@ -42,6 +42,12 @@ const InventorySchema = new Schema({
     unique: false,
     trim: true
   },
+  siteName: {
+    type: String,
+    required: false,
+    unique: false,
+    trim: true
+  },
   isRestricted: {
     type: Boolean,
     required: false,

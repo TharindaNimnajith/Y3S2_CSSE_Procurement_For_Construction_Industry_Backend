@@ -8,6 +8,7 @@ const createInventories = async (req, res, next) => {
     unitsInStock,
     thresholdUnits,
     description,
+    siteName,
     isRestricted
   } = req.body;
 
@@ -17,6 +18,7 @@ const createInventories = async (req, res, next) => {
     unitsInStock,
     thresholdUnits,
     description,
+    siteName,
     isRestricted
   });
 

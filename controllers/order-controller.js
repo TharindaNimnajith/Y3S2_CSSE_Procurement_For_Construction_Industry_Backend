@@ -3,7 +3,6 @@ const Orders = require('../models/order.model');
 
 const createOrders = async (req, res, next) => {
   const {
-    purchaseDate,
     requestedDate,
     siteName,
     siteManager,
@@ -19,7 +18,6 @@ const createOrders = async (req, res, next) => {
   } = req.body;
 
   const OrdersItem = new Orders({
-    purchaseDate,
     requestedDate,
     siteName,
     requiredDate,

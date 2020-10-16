@@ -11,12 +11,6 @@ const OrderSchema = new Schema({
     unique: true,
     trim: true
   },
-  purchaseDate: {
-    type: String,
-    required: false,
-    unique: false,
-    trim: true
-  },
   requestedDate: {
     type: String,
     required: false,
