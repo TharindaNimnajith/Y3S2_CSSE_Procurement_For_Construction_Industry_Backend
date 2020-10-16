@@ -13,9 +13,13 @@ const createOrders = async (req, res, next) => {
     requiredDate,
     totPrice,
     isRestricted,
-    deliveryNote,
-    status
+    deliveryNote
   } = req.body;
+
+  let status = 'approved';
+
+  if (isRestricted === true || totPrice > 100000)
+    status = 'pending';
 
   const OrdersItem = new Orders({
     requestedDate,
@@ -150,7 +154,6 @@ const getOrder = async (req, res, next) => {
   res.status(200).send(order);
 };
 
-
 const addInvoiceOrder = async (req, res, next) => {
   let order;
 
@@ -174,7 +177,6 @@ const addInvoiceOrder = async (req, res, next) => {
   order.deliveryDate = deliveryDate;
   order.invoiceId = invoiceId;
   order.supplierAmount = supplierAmount;
-
 
   try {
     await order.save();

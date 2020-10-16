@@ -10,6 +10,7 @@ const OrderLists = require('./routes/order-lists.routes');
 const Inventory = require('./routes/inventory.routes');
 const Policy = require('./routes/policy.routes');
 const Payment = require('./routes/payment.routes');
+const Site = require('./routes/site.routes');
 
 require('dotenv').config();
 
@@ -30,6 +31,7 @@ app.use('/orderLists', OrderLists);
 app.use('/inventory', Inventory);
 app.use('/policy', Policy);
 app.use('/payment', Payment);
+app.use('/site', Site);
 
 app.use(() => {
   throw new HttpError('Could not find this route.', 404);
