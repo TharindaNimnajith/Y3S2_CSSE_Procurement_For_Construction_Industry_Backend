@@ -1,5 +1,6 @@
 const HttpError = require('../models/http-errors');
 const Orders = require('../models/order.model');
+const Policy = require('../models/policy.model');
 
 const createOrders = async (req, res, next) => {
   const {
@@ -16,9 +17,25 @@ const createOrders = async (req, res, next) => {
     deliveryNote
   } = req.body;
 
+  let approvalAmount;
+
+  try {
+    approvalAmount = await Policy.findOne({
+      property: 'Approval Amount'
+    });
+  } catch (error) {
+    console.log(error);
+    return next(new HttpError('Unexpected internal server error occurred, please try again later.', 500));
+  }
+
+  if (approvalAmount === null)
+    approvalAmount = 100000;
+  else
+    approvalAmount = approvalAmount.value;
+
   let status = 'approved';
 
-  if (isRestricted === true || totPrice > 100000)
+  if (isRestricted === true || parseInt(totPrice) > parseInt(approvalAmount))
     status = 'pending';
 
   const OrdersItem = new Orders({
