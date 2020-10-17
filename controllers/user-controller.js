@@ -104,7 +104,7 @@ const getUser = async (req, res, next) => {
 };
 
 const getSiteManagers = async (req, res, next) => {
-  let siteManagers
+  let siteManagers;
 
   try {
     siteManagers = await Users.find({
@@ -119,7 +119,7 @@ const getSiteManagers = async (req, res, next) => {
 };
 
 const getSuppliers = async (req, res, next) => {
-  let suppliers
+  let suppliers;
 
   try {
     suppliers = await Users.find({
