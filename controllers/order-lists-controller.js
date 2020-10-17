@@ -155,12 +155,37 @@ const getDeliveryRejectedDManager = async (req, res, next) => {
   res.status(200).send(orderList);
 };
 
-const getDeliveredOrdersAllSuppliers = async (req, res, next) => {
+const getCompletedOrdersSupplier = async (req, res, next) => {
   let orderList;
+
+  const {
+    supplierName
+  } = req.body;
 
   try {
     orderList = await Orders.find({
-      status: 'supDelivered'
+      status: 'deliveryConfirmed',
+      supplierName: supplierName
+    });
+  } catch (error) {
+    console.log(error);
+    return next(new HttpError('Unexpected internal server error occurred, please try again later.', 500));
+  }
+
+  res.status(200).send(orderList);
+};
+
+const getDRejectedOrdersSupplier = async (req, res, next) => {
+  let orderList;
+
+  const {
+    supplierName
+  } = req.body;
+
+  try {
+    orderList = await Orders.find({
+      status: 'deliveryRejected',
+      supplierName: supplierName
     });
   } catch (error) {
     console.log(error);
@@ -179,4 +204,5 @@ exports.getRejectedOrdersSupplier = getRejectedOrdersSupplier;
 exports.getDeliveryOrdersDManager = getDeliveryOrdersDManager;
 exports.getDeliveryConfirmedDManager = getDeliveryConfirmedDManager;
 exports.getDeliveryRejectedDManager = getDeliveryRejectedDManager;
-exports.getDeliveredOrdersAllSuppliers = getDeliveredOrdersAllSuppliers;
+exports.getCompletedOrdersSupplier = getCompletedOrdersSupplier;
+exports.getDRejectedOrdersSupplier = getDRejectedOrdersSupplier;

@@ -12,6 +12,7 @@ router.post('/getRejectedOrdersSupplier', OrdersController.getRejectedOrdersSupp
 router.get('/getDeliveryOrdersDManager', OrdersController.getDeliveryOrdersDManager);
 router.get('/getDeliveryConfirmedDManager', OrdersController.getDeliveryConfirmedDManager);
 router.get('/getDeliveryRejectedDManager', OrdersController.getDeliveryRejectedDManager);
-router.get('/getDeliveredOrdersAllSuppliers', OrdersController.getDeliveredOrdersAllSuppliers);
+router.post('/getCompletedOrdersSupplier', OrdersController.getCompletedOrdersSupplier);
+router.post('/getDRejectedOrdersSupplier', OrdersController.getDRejectedOrdersSupplier);
 
 module.exports = router;

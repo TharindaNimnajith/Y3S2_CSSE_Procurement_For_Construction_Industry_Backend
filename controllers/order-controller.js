@@ -1,6 +1,7 @@
 const HttpError = require('../models/http-errors');
 const Orders = require('../models/order.model');
 const Policy = require('../models/policy.model');
+const Inventory = require('../models/inventory.model');
 
 const createOrders = async (req, res, next) => {
   const {
@@ -110,6 +111,22 @@ const editOrderStatus = async (req, res, next) => {
     console.log(err);
     const error = new HttpError('Updating failed, please try again.', 500);
     return next(error);
+  }
+
+  if (status === 'deliveryConfirmed') {
+    let item = await Inventory.findOne({
+      itemName: order.itemName
+    });
+
+    item.unitsInStock = parseInt(item.unitsInStock) + parseInt(order.itemQuantity);
+
+    try {
+      await item.save();
+    } catch (err) {
+      console.log(err);
+      const error = new HttpError('Updating failed, please try again.', 500);
+      return next(error);
+    }
   }
 
   return res.json({
