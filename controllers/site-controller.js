@@ -1,6 +1,7 @@
 const HttpError = require('../models/http-errors');
 const Sites = require('../models/site.model');
 
+// method to insert sites
 const createSites = async (req, res, next) => {
   const {
     siteName,
@@ -33,6 +34,7 @@ const createSites = async (req, res, next) => {
   });
 };
 
+// method to retrieve sites list
 const getSites = async (req, res) => {
   Sites.find({})
     .then((sites) =>
@@ -44,6 +46,7 @@ const getSites = async (req, res) => {
     .catch((err) => res.status(400).json('Error: ' + err));
 };
 
+// method to edit sites
 const editSites = async (req, res) => {
   const {
     sites,
@@ -66,6 +69,7 @@ const editSites = async (req, res) => {
   });
 };
 
+// method to delete sites
 const deleteSites = async (req, res) => {
   const {
     id
@@ -81,6 +85,7 @@ const deleteSites = async (req, res) => {
   });
 };
 
+// method to retrieve a single site
 const getSite = async (req, res, next) => {
   let site;
 

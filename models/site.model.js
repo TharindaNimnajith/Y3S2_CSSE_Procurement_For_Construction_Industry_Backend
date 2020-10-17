@@ -4,6 +4,7 @@ const uniqueValidator = require('mongoose-unique-validator');
 
 const Schema = mongoose.Schema;
 
+// site model
 const SiteSchema = new Schema({
   siteId: {
     type: Number,

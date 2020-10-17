@@ -115,7 +115,7 @@ const editOrderStatus = async (req, res, next) => {
 
   if (status === 'deliveryConfirmed') {
     let item = await Inventory.findOne({
-      itemName: order.itemName
+      itemId: order.itemId
     });
 
     item.unitsInStock = parseInt(item.unitsInStock) + parseInt(order.itemQuantity);
