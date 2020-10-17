@@ -103,6 +103,35 @@ const getUser = async (req, res, next) => {
   res.status(200).send(user);
 };
 
+const getSiteManagers = async (req, res, next) => {
+  let siteManagers
+
+  try {
+    siteManagers = await Users.find({
+      type: 'Site Manager'
+    });
+  } catch (error) {
+    console.log(error);
+    return next(new HttpError('Unexpected internal server error occurred, please try again later.', 500));
+  }
+
+  res.status(200).send(siteManagers);
+};
+
+const getSuppliers = async (req, res, next) => {
+  let suppliers
+
+  try {
+    suppliers = await Users.find({
+      type: 'Supplier'
+    });
+  } catch (error) {
+    console.log(error);
+    return next(new HttpError('Unexpected internal server error occurred, please try again later.', 500));
+  }
+
+  res.status(200).send(suppliers);
+};
 
 const signup = async (req, res, next) => {
   const {
@@ -207,3 +236,5 @@ exports.getUser = getUser;
 exports.deleteUsers = deleteUsers;
 exports.login = login;
 exports.signup = signup;
+exports.getSiteManagers = getSiteManagers;
+exports.getSuppliers = getSuppliers;

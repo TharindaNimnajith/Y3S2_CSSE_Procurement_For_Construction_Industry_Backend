@@ -10,5 +10,7 @@ router.put('/editUsers', UserController.editUsers);
 router.delete('/deleteUsers', UserController.deleteUsers);
 router.post('/signup', UserController.signup);
 router.post('/login', UserController.login);
+router.post('/getSiteManagers', UserController.getSiteManagers);
+router.post('/getSuppliers', UserController.getSuppliers);
 
 module.exports = router;
