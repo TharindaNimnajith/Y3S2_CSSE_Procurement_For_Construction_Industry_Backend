@@ -10,5 +10,8 @@ router.put('/editOrders', OrderController.editOrders);
 router.delete('/deleteOrders', OrderController.deleteOrders);
 router.post('/addInvoiceOrder/:id', OrderController.addInvoiceOrder);
 router.put('/editOrderStatus', OrderController.editOrderStatus);
+router.post('/editOrderRejectReasonPS', OrderController.editOrderRejectReasonPS);
+router.post('/editOrderRejectReasonSup', OrderController.editOrderRejectReasonSup);
+router.post('/editOrderRejectReasonDM', OrderController.editOrderRejectReasonDM);
 
 module.exports = router;

@@ -224,6 +224,108 @@ const addInvoiceOrder = async (req, res, next) => {
   });
 };
 
+const editOrderRejectReasonPS = async (req, res, next) => {
+  let order;
+
+  const {
+    orderId,
+    status,
+    reason
+  } = req.body;
+
+  try {
+    order = await Orders.findOne({
+      orderId: orderId
+    });
+  } catch (error) {
+    console.log(error);
+    return next(new HttpError('Unexpected internal server error occurred, please try again later.', 500));
+  }
+
+  order.procurementStaffRejectedReason = reason;
+  order.status = status;
+
+  try {
+    await order.save();
+  } catch (err) {
+    console.log(err);
+    const error = new HttpError('Updating failed, please try again.', 500);
+    return next(error);
+  }
+
+  return res.json({
+    message: 'Order status updated successfully'
+  });
+};
+
+const editOrderRejectReasonSup = async (req, res, next) => {
+  let order;
+
+  const {
+    orderId,
+    status,
+    reason
+  } = req.body;
+
+  try {
+    order = await Orders.findOne({
+      orderId: orderId
+    });
+  } catch (error) {
+    console.log(error);
+    return next(new HttpError('Unexpected internal server error occurred, please try again later.', 500));
+  }
+
+  order.supplierRejectedReason = reason;
+  order.status = status;
+
+  try {
+    await order.save();
+  } catch (err) {
+    console.log(err);
+    const error = new HttpError('Updating failed, please try again.', 500);
+    return next(error);
+  }
+
+  return res.json({
+    message: 'Order status updated successfully'
+  });
+};
+
+const editOrderRejectReasonDM = async (req, res, next) => {
+  let order;
+
+  const {
+    orderId,
+    status,
+    reason
+  } = req.body;
+
+  try {
+    order = await Orders.findOne({
+      orderId: orderId
+    });
+  } catch (error) {
+    console.log(error);
+    return next(new HttpError('Unexpected internal server error occurred, please try again later.', 500));
+  }
+
+  order.deliveryManagerRejectedReason = reason;
+  order.status = status;
+
+  try {
+    await order.save();
+  } catch (err) {
+    console.log(err);
+    const error = new HttpError('Updating failed, please try again.', 500);
+    return next(error);
+  }
+
+  return res.json({
+    message: 'Order status updated successfully'
+  });
+};
+
 exports.createOrders = createOrders;
 exports.editOrders = editOrders;
 exports.getOrders = getOrders;
@@ -231,3 +333,6 @@ exports.getOrder = getOrder;
 exports.deleteOrders = deleteOrders;
 exports.addInvoiceOrder = addInvoiceOrder;
 exports.editOrderStatus = editOrderStatus;
+exports.editOrderRejectReasonPS = editOrderRejectReasonPS;
+exports.editOrderRejectReasonSup = editOrderRejectReasonSup;
+exports.editOrderRejectReasonDM = editOrderRejectReasonDM;
