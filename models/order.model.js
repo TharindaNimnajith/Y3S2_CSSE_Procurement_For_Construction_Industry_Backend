@@ -100,6 +100,24 @@ const OrderSchema = new Schema({
     required: false,
     unique: false,
     trim: true
+  },
+  procurementStaffRejectedReason: {
+    type: String,
+    required: false,
+    unique: false,
+    trim: true
+  },
+  supplierRejectedReason: {
+    type: String,
+    required: false,
+    unique: false,
+    trim: true
+  },
+  deliveryManagerRejectedReason: {
+    type: String,
+    required: false,
+    unique: false,
+    trim: true
   }
 }, {
   timestamps: true,
