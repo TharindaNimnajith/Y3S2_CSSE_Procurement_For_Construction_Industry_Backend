@@ -39,15 +39,14 @@ const UserSchema = new Schema({
     type: String,
     required: false,
     unique: false,
-    trim: true,
-    default:'Procument Staff'
+    trim: true
   },
-  typeDefault:{
+  typeDefault: {
     type: Boolean,
     required: false,
     unique: false,
     trim: true,
-    default:true
+    default: true
   }
 }, {
   timestamps: true,

@@ -112,33 +112,31 @@ const signup = async (req, res, next) => {
     password,
     type,
     typeDefault
-    
   } = req.body;
 
   let existingUser;
 
   try {
-    existingUser = await Users.findOne({email: email});
+    existingUser = await Users.findOne({ email: email });
   } catch (err) {
     const error = new HttpError(
-      "Signing up failed, please try again later.",
+      'Signing up failed, please try again later.',
       500
     );
     res.json({
-      message: "Signing up failed, please try again later.",
-      login: 0,
+      message: 'Signing up failed, please try again later.',
+      login: 0
     });
     return next(error);
   }
 
   if (existingUser) {
     const error = new HttpError(
-      "User already exists, please login instead.",
-     
+      'User already exists, please login instead.'
     );
     res.json({
-      message: "User already exists, please login instead.",
-      login: 0,
+      message: 'User already exists, please login instead.',
+      login: 0
     });
     return next(error);
   }
@@ -155,58 +153,52 @@ const signup = async (req, res, next) => {
   try {
     console.log(createdUser);
     await createdUser.save();
-    // res.json({message: "Signed Up", login: 1});
   } catch (err) {
-    const error = new HttpError("Signing up failed, please try again.", 500);
-    res.json({message: "Signing up failed, please try again.", login: 0});
+    const error = new HttpError('Signing up failed, please try again.', 500);
+    res.json({ message: 'Signing up failed, please try again.', login: 0 });
     return next(error);
   }
 
   res.status(201).json({
-    user: createdUser.toObject({getters: true}),
+    user: createdUser.toObject({ getters: true }),
     login: 1,
-    name:createdUser.name,
-    type:createdUser.type,
-    typeDefault:createdUser.typeDefault,
-    message: "Signed Up"
+    name: createdUser.name,
+    type: createdUser.type,
+    typeDefault: createdUser.typeDefault,
+    message: 'Signed Up'
   });
 };
 
-
 const login = async (req, res, next) => {
-  const {email, password} = req.body;
+  const { email, password } = req.body;
   let existingUser;
 
   try {
-    existingUser = await Users.findOne({email: email});
+    existingUser = await Users.findOne({ email: email });
   } catch (err) {
     const error = new HttpError(
-      "Login up failed, please try again later.",
+      'Login up failed, please try again later.',
       500
     );
-    res.json({message: "Login up failed, please try again later.", login: 0});
+    res.json({ message: 'Login up failed, please try again later.', login: 0 });
     return next(error);
   }
 
   if (!existingUser || existingUser.password !== password) {
-    const error = new HttpError("Invalid username or password.", 401);
-    res.json({message: "Invalid username or password", login: 0});
+    const error = new HttpError('Invalid username or password.', 401);
+    res.json({ message: 'Invalid username or password', login: 0 });
     return next(error);
   }
 
   res.json({
-    message: "Logged in!",
+    message: 'Logged in!',
     login: 1,
-    name:existingUser.name,
-    type:existingUser.type,
-    typeDefault:existingUser.typeDefault,
-    userDetails: existingUser,
+    name: existingUser.name,
+    type: existingUser.type,
+    typeDefault: existingUser.typeDefault,
+    userDetails: existingUser
   });
 };
-
-
-
-
 
 exports.createUsers = createUsers;
 exports.editUsers = editUsers;
