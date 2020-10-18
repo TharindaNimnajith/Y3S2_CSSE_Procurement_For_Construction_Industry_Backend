@@ -1,6 +1,7 @@
 const HttpError = require('../models/http-errors');
 const Users = require('../models/user.model');
 
+// method to insert users
 const createUsers = async (req, res, next) => {
   const {
     name,
@@ -38,6 +39,7 @@ const createUsers = async (req, res, next) => {
   });
 };
 
+// method to retrieve users list
 const getUsers = async (req, res) => {
   Users.find({})
     .then((users) =>
@@ -49,6 +51,7 @@ const getUsers = async (req, res) => {
     .catch((err) => res.status(400).json('Error: ' + err));
 };
 
+// method to edit users
 const editUsers = async (req, res) => {
   const {
     users,
@@ -71,6 +74,7 @@ const editUsers = async (req, res) => {
   });
 };
 
+// method to delete users
 const deleteUsers = async (req, res) => {
   const {
     id
@@ -86,6 +90,7 @@ const deleteUsers = async (req, res) => {
   });
 };
 
+// method to retrieve a single user
 const getUser = async (req, res, next) => {
   let user;
 
@@ -103,6 +108,7 @@ const getUser = async (req, res, next) => {
   res.status(200).send(user);
 };
 
+// method to retrieve a site manager
 const getSiteManagers = async (req, res, next) => {
   let siteManagers;
 
@@ -118,6 +124,7 @@ const getSiteManagers = async (req, res, next) => {
   res.status(200).send(siteManagers);
 };
 
+// method to retrieve a supplier
 const getSuppliers = async (req, res, next) => {
   let suppliers;
 
@@ -133,6 +140,7 @@ const getSuppliers = async (req, res, next) => {
   res.status(200).send(suppliers);
 };
 
+// method to signup
 const signup = async (req, res, next) => {
   const {
     name,
@@ -197,6 +205,7 @@ const signup = async (req, res, next) => {
   });
 };
 
+// method to login
 const login = async (req, res, next) => {
   const { email, password } = req.body;
   let existingUser;

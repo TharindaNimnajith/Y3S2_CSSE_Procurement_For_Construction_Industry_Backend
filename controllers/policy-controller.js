@@ -1,6 +1,7 @@
 const HttpError = require('../models/http-errors');
 const Policies = require('../models/policy.model');
 
+// method to insert policies
 const createPolicies = async (req, res, next) => {
   const {
     property,
@@ -32,6 +33,7 @@ const createPolicies = async (req, res, next) => {
   });
 };
 
+// method to retrieve policies list
 const getPolicies = async (req, res) => {
   Policies.find({})
     .then((policies) =>
@@ -43,6 +45,7 @@ const getPolicies = async (req, res) => {
     .catch((err) => res.status(400).json('Error: ' + err));
 };
 
+// method to edit policies
 const editPolicies = async (req, res) => {
   const {
     policies,
@@ -65,6 +68,7 @@ const editPolicies = async (req, res) => {
   });
 };
 
+// method to delete policies
 const deletePolicies = async (req, res) => {
   const {
     id
@@ -80,6 +84,7 @@ const deletePolicies = async (req, res) => {
   });
 };
 
+// method to retrieve a single policy
 const getPolicy = async (req, res, next) => {
   let policy;
 

@@ -25,12 +25,25 @@ app.use(
 app.use(bodyParser.json());
 app.use(cors());
 
+// route to users
 app.use('/user', User);
+
+// route to order
 app.use('/order', Order);
+
+// route to order lists
 app.use('/orderLists', OrderLists);
+
+// route to inventory
 app.use('/inventory', Inventory);
+
+// route to policy
 app.use('/policy', Policy);
+
+// route to payment
 app.use('/payment', Payment);
+
+// route to site
 app.use('/site', Site);
 
 app.use(() => {

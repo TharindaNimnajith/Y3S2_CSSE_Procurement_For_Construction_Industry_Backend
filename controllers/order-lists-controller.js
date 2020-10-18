@@ -1,6 +1,7 @@
 const HttpError = require('../models/http-errors');
 const Orders = require('../models/order.model');
 
+// method to retrieve pending orders list
 const getPendingOrders = async (req, res, next) => {
   let orderList;
 
@@ -16,6 +17,7 @@ const getPendingOrders = async (req, res, next) => {
   res.status(200).send(orderList);
 };
 
+// method to retrieve approved purchased orders list
 const getApprovedPurchasedOrders = async (req, res, next) => {
   let orderList;
 
@@ -33,6 +35,7 @@ const getApprovedPurchasedOrders = async (req, res, next) => {
   res.status(200).send(orderList);
 };
 
+// method to retrieve rejected purchased orders list
 const getRejectedPurchasedOrders = async (req, res, next) => {
   let orderList;
 
@@ -48,6 +51,7 @@ const getRejectedPurchasedOrders = async (req, res, next) => {
   res.status(200).send(orderList);
 };
 
+// method to retrieve pending supplier orders list
 const getPendingOrdersSupplier = async (req, res, next) => {
   let orderList;
 
@@ -70,6 +74,7 @@ const getPendingOrdersSupplier = async (req, res, next) => {
   res.status(200).send(orderList);
 };
 
+// method to retrieve delivered supplier orders list
 const getDeliveredOrdersSupplier = async (req, res, next) => {
   let orderList;
 
@@ -90,6 +95,7 @@ const getDeliveredOrdersSupplier = async (req, res, next) => {
   res.status(200).send(orderList);
 };
 
+// method to retrieve rejected supplier orders list
 const getRejectedOrdersSupplier = async (req, res, next) => {
   let orderList;
 
@@ -110,6 +116,7 @@ const getRejectedOrdersSupplier = async (req, res, next) => {
   res.status(200).send(orderList);
 };
 
+// method to retrieve delivered delivery manager orders list
 const getDeliveryOrdersDManager = async (req, res, next) => {
   let orderList;
 
@@ -125,6 +132,7 @@ const getDeliveryOrdersDManager = async (req, res, next) => {
   res.status(200).send(orderList);
 };
 
+// method to retrieve delivery confirmed delivery manager orders list
 const getDeliveryConfirmedDManager = async (req, res, next) => {
   let orderList;
 
@@ -140,6 +148,7 @@ const getDeliveryConfirmedDManager = async (req, res, next) => {
   res.status(200).send(orderList);
 };
 
+// method to retrieve delivery rejected delivery manager orders list
 const getDeliveryRejectedDManager = async (req, res, next) => {
   let orderList;
 
@@ -155,6 +164,7 @@ const getDeliveryRejectedDManager = async (req, res, next) => {
   res.status(200).send(orderList);
 };
 
+// method to retrieve completed supplier orders list
 const getCompletedOrdersSupplier = async (req, res, next) => {
   let orderList;
 
@@ -175,6 +185,7 @@ const getCompletedOrdersSupplier = async (req, res, next) => {
   res.status(200).send(orderList);
 };
 
+// method to retrieve rejected supplier orders list
 const getDRejectedOrdersSupplier = async (req, res, next) => {
   let orderList;
 

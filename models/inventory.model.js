@@ -3,7 +3,7 @@ const autoIncrement = require('mongoose-auto-increment');
 const uniqueValidator = require('mongoose-unique-validator');
 
 const Schema = mongoose.Schema;
-
+// Inventory model
 const InventorySchema = new Schema({
   itemId: {
     type: Number,

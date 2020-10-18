@@ -1,6 +1,7 @@
 const HttpError = require('../models/http-errors');
 const Inventories = require('../models/inventory.model');
 
+// method to insert inventories
 const createInventories = async (req, res, next) => {
   const {
     itemName,
@@ -42,6 +43,7 @@ const createInventories = async (req, res, next) => {
   });
 };
 
+// method to retrieve inventories list
 const getInventories = async (req, res) => {
   Inventories.find({})
     .then((inventories) =>
@@ -53,6 +55,7 @@ const getInventories = async (req, res) => {
     .catch((err) => res.status(400).json('Error: ' + err));
 };
 
+// method to edit inventories
 const editInventories = async (req, res) => {
   const {
     inventories,
@@ -75,6 +78,7 @@ const editInventories = async (req, res) => {
   });
 };
 
+// method to delete inventories
 const deleteInventories = async (req, res) => {
   const {
     id
@@ -90,6 +94,7 @@ const deleteInventories = async (req, res) => {
   });
 };
 
+// method to retrieve a single inventory
 const getInventory = async (req, res, next) => {
   let inventory;
 

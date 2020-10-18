@@ -1,6 +1,7 @@
 const HttpError = require('../models/http-errors');
 const Payments = require('../models/payment.model');
 
+// method to insert payments
 const createPayments = async (req, res, next) => {
   const {
     invoiceId,
@@ -38,6 +39,7 @@ const createPayments = async (req, res, next) => {
   });
 };
 
+// method to retrieve payments list
 const getPayments = async (req, res) => {
   Payments.find({})
     .then((payments) =>
@@ -49,6 +51,7 @@ const getPayments = async (req, res) => {
     .catch((err) => res.status(400).json('Error: ' + err));
 };
 
+// method to edit payments
 const editPayments = async (req, res) => {
   const {
     payments,
@@ -71,6 +74,7 @@ const editPayments = async (req, res) => {
   });
 };
 
+// method to delete payments
 const deletePayments = async (req, res) => {
   const {
     id
@@ -86,6 +90,7 @@ const deletePayments = async (req, res) => {
   });
 };
 
+// method to retrieve a single payment
 const getPayment = async (req, res, next) => {
   let payment;
 

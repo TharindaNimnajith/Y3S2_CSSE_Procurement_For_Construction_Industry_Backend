@@ -3,6 +3,7 @@ const Orders = require('../models/order.model');
 const Policy = require('../models/policy.model');
 const Inventory = require('../models/inventory.model');
 
+// method to insert orders
 const createOrders = async (req, res, next) => {
   const {
     requestedDate,
@@ -75,6 +76,7 @@ const createOrders = async (req, res, next) => {
   });
 };
 
+// method to retrieve orders list
 const getOrders = async (req, res) => {
   Orders.find({})
     .then((orders) =>
@@ -86,6 +88,7 @@ const getOrders = async (req, res) => {
     .catch((err) => res.status(400).json('Error: ' + err));
 };
 
+// method to edit orders
 const editOrderStatus = async (req, res, next) => {
   let order;
 
@@ -134,6 +137,7 @@ const editOrderStatus = async (req, res, next) => {
   });
 };
 
+// method to edit orders
 const editOrders = async (req, res) => {
   const {
     orders,
@@ -156,6 +160,7 @@ const editOrders = async (req, res) => {
   });
 };
 
+// method to delete orders
 const deleteOrders = async (req, res) => {
   const {
     id
@@ -171,6 +176,7 @@ const deleteOrders = async (req, res) => {
   });
 };
 
+// method to retrieve a single orders
 const getOrder = async (req, res, next) => {
   let order;
 
@@ -188,6 +194,7 @@ const getOrder = async (req, res, next) => {
   res.status(200).send(order);
 };
 
+// method to insert invoice to order
 const addInvoiceOrder = async (req, res, next) => {
   let order;
 
@@ -224,6 +231,7 @@ const addInvoiceOrder = async (req, res, next) => {
   });
 };
 
+// method to edit edit order reject reason proc staff
 const editOrderRejectReasonPS = async (req, res, next) => {
   let order;
 
@@ -258,6 +266,7 @@ const editOrderRejectReasonPS = async (req, res, next) => {
   });
 };
 
+// method to edit edit order reject reason supplier
 const editOrderRejectReasonSup = async (req, res, next) => {
   let order;
 
@@ -292,6 +301,7 @@ const editOrderRejectReasonSup = async (req, res, next) => {
   });
 };
 
+// method to edit edit order reject reason delivery manager
 const editOrderRejectReasonDM = async (req, res, next) => {
   let order;
 

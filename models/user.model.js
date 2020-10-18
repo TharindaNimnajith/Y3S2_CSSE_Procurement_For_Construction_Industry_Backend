@@ -3,7 +3,7 @@ const autoIncrement = require('mongoose-auto-increment');
 const uniqueValidator = require('mongoose-unique-validator');
 
 const Schema = mongoose.Schema;
-
+//User model
 const UserSchema = new Schema({
   userId: {
     type: Number,
