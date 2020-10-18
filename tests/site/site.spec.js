@@ -14,7 +14,7 @@ let token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjhhZTcxZTcwYzdjYz
 
 const siteTests = (chai, functions) => {
 
-  describe('Site  tests', () => {
+  describe('Site Tests', () => {
     it('Should create new site', (done) => {
       chai.request(functions).post(`${siteURL}create`).set({Authorization: `Bearer ${token}`})
         .send({
@@ -28,7 +28,7 @@ const siteTests = (chai, functions) => {
             res.should.have.status(201);
             res.body.should.be.a('object');
             res.body.should.have.property('sitesItem');
-            console.log(res.body.sitesItem);
+            // console.log(res.body.sitesItem);
             newSite = res.body.sitesItem;
           }
           done();
@@ -61,17 +61,19 @@ const siteTests = (chai, functions) => {
     })
 
     it('Should delete the site', (done) => {
-      chai.request(functions).delete(`${siteURL}deleteSites/${newSite._id}`).set({Authorization: `Bearer ${token}`})
-        .end((error, res) => {
+      chai.request(functions).delete(`${siteURL}deleteSites`).set({Authorization: `Bearer ${token}`})
+        .send({
+          id: newSite._id
+        })
+        .end((error) => {
           if (error) {
             console.log(error);
           } else {
-            console.log('Deleted Successfully');
+            // console.log('Deleted Successfully');
           }
           done();
         })
     })
-
   });
 }
 

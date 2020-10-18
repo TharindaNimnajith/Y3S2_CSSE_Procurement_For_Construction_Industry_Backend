@@ -9,7 +9,7 @@ let newUser;
 
 let name = 'Kamal Perera';
 let address = 'No.1, Galle Road, Galle';
-let email = '1';
+let email = '123';
 let password = '1';
 let type = 'Procurement Staff';
 
@@ -17,7 +17,7 @@ let token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjhhZTcxZTcwYzdjYz
 
 const userTests = (chai, functions) => {
 
-  describe('User tests', () => {
+  describe('User Tests', () => {
     it('Should create new user', (done) => {
       chai.request(functions).post(`${userURL}create`).set({Authorization: `Bearer ${token}`})
         .send({
@@ -34,7 +34,7 @@ const userTests = (chai, functions) => {
             res.should.have.status(201);
             res.body.should.be.a('object');
             res.body.should.have.property('usersItem');
-            console.log(res.body.usersItem);
+            // console.log(res.body.usersItem);
             newUser = res.body.usersItem;
           }
           done();
@@ -67,17 +67,19 @@ const userTests = (chai, functions) => {
     })
 
     it('Should delete the user', (done) => {
-      chai.request(functions).delete(`${userURL}deleteUsers/${newUser._id}`).set({Authorization: `Bearer ${token}`})
-        .end((error, res) => {
+      chai.request(functions).delete(`${userURL}deleteUsers`).set({Authorization: `Bearer ${token}`})
+        .send({
+          id: newUser._id
+        })
+        .end((error) => {
           if (error) {
             console.log(error);
           } else {
-            console.log('Deleted Successfully');
+            // console.log('Deleted Successfully');
           }
           done();
         })
     })
-
   });
 }
 

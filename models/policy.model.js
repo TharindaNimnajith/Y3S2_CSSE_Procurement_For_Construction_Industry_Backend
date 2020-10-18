@@ -15,7 +15,7 @@ const PolicySchema = new Schema({
   property: {
     type: String,
     required: true,
-    unique: true,
+    unique: false,
     trim: true
   },
   value: {

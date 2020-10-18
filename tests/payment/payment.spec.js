@@ -17,7 +17,7 @@ let token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjhhZTcxZTcwYzdjYz
 
 const paymentTests = (chai, functions) => {
 
-  describe('Payment  tests', () => {
+  describe('Payment Tests', () => {
     it('Should create new payment', (done) => {
       chai.request(functions).post(`${paymentURL}create`).set({Authorization: `Bearer ${token}`})
         .send({
@@ -34,7 +34,7 @@ const paymentTests = (chai, functions) => {
             res.should.have.status(201);
             res.body.should.be.a('object');
             res.body.should.have.property('paymentsItem');
-            console.log(res.body.paymentsItem);
+            // console.log(res.body.paymentsItem);
             newPayment = res.body.paymentsItem;
           }
           done();
@@ -67,17 +67,19 @@ const paymentTests = (chai, functions) => {
     })
 
     it('Should delete the payment', (done) => {
-      chai.request(functions).delete(`${paymentURL}deletePayments/${newPayment._id}`).set({Authorization: `Bearer ${token}`})
-        .end((error, res) => {
+      chai.request(functions).delete(`${paymentURL}deletePayments`).set({Authorization: `Bearer ${token}`})
+        .send({
+          id: newPayment._id
+        })
+        .end((error) => {
           if (error) {
             console.log(error);
           } else {
-            console.log('Deleted Successfully');
+            // console.log('Deleted Successfully');
           }
           done();
         })
     })
-
   });
 }
 

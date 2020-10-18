@@ -19,7 +19,7 @@ let token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjhhZTcxZTcwYzdjYz
 
 const inventoryTests = (chai, functions) => {
 
-  describe('Inventory  tests', () => {
+  describe('Inventory Tests', () => {
     it('Should create new inventory', (done) => {
       chai.request(functions).post(`${inventoryURL}create`).set({Authorization: `Bearer ${token}`})
         .send({
@@ -38,7 +38,7 @@ const inventoryTests = (chai, functions) => {
             res.should.have.status(201);
             res.body.should.be.a('object');
             res.body.should.have.property('inventoriesItem');
-            console.log(res.body.inventoriesItem);
+            // console.log(res.body.inventoriesItem);
             newInventory = res.body.inventoriesItem;
           }
           done();
@@ -71,17 +71,19 @@ const inventoryTests = (chai, functions) => {
     })
 
     it('Should delete the inventory', (done) => {
-      chai.request(functions).delete(`${inventoryURL}deleteInventories/${newInventory._id}`).set({Authorization: `Bearer ${token}`})
-        .end((error, res) => {
+      chai.request(functions).delete(`${inventoryURL}deleteInventories`).set({Authorization: `Bearer ${token}`})
+        .send({
+          id: newInventory._id
+        })
+        .end((error) => {
           if (error) {
             console.log(error);
           } else {
-            console.log('Deleted Successfully');
+            // console.log('Deleted Successfully');
           }
           done();
         })
     })
-
   });
 }
 

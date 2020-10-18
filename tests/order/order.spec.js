@@ -23,7 +23,7 @@ let token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjhhZTcxZTcwYzdjYz
 
 const orderTests = (chai, functions) => {
 
-  describe('Order  tests', () => {
+  describe('Order Tests', () => {
     it('Should create new order', (done) => {
       chai.request(functions).post(`${orderURL}create`).set({Authorization: `Bearer ${token}`})
         .send({
@@ -46,7 +46,7 @@ const orderTests = (chai, functions) => {
             res.should.have.status(201);
             res.body.should.be.a('object');
             res.body.should.have.property('ordersItem');
-            console.log(res.body.ordersItem);
+            // console.log(res.body.ordersItem);
             newOrder = res.body.ordersItem;
           }
           done();
@@ -66,7 +66,6 @@ const orderTests = (chai, functions) => {
         })
     })
 
-
     it('Should get single order', (done) => {
       chai.request(functions).get(`${orderURL}getOrders/${newOrder._id}`).set({Authorization: `Bearer ${token}`})
         .end((error, res) => {
@@ -80,17 +79,19 @@ const orderTests = (chai, functions) => {
     })
 
     it('Should delete the order', (done) => {
-      chai.request(functions).delete(`${orderURL}deleteOrders/${newOrder._id}`).set({Authorization: `Bearer ${token}`})
-        .end((error, res) => {
+      chai.request(functions).delete(`${orderURL}deleteOrders`).set({Authorization: `Bearer ${token}`})
+        .send({
+          id: newOrder._id
+        })
+        .end((error) => {
           if (error) {
             console.log(error);
           } else {
-            console.log('Deleted Successfully');
+            // console.log('Deleted Successfully');
           }
           done();
         })
     })
-
   });
 }
 

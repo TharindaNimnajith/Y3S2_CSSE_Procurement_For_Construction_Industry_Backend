@@ -16,7 +16,7 @@ chai.should();
 chai.use(chaiHttp);
 chai.use(require('chai-things'));
 
-describe('Run tests', function () {
+describe('Run Tests', function () {
   orderTests(chai, server);
   paymentTests(chai, server);
   inventoryTests(chai, server);
@@ -24,6 +24,6 @@ describe('Run tests', function () {
   userTests(chai, server);
   policyTests(chai, server);
   after(async function () {
-    console.log('Tests ended.');
+    console.log('Tests Ended.');
   });
 });
