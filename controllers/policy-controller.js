@@ -56,7 +56,7 @@ const editPolicies = async (req, res) => {
     '_id': id
   };
 
-  Policies.findOneAndUpdate(query, policies, { upsert: true }, (err, item) => {
+  Policies.findOneAndUpdate(query, policies, {upsert: true}, (err, item) => {
     if (err)
       return res.send(500, {
         error: err

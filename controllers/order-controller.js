@@ -148,7 +148,7 @@ const editOrders = async (req, res) => {
     '_id': id
   };
 
-  Orders.findOneAndUpdate(query, orders, { upsert: true }, (err, item) => {
+  Orders.findOneAndUpdate(query, orders, {upsert: true}, (err, item) => {
     if (err)
       return res.send(500, {
         error: err

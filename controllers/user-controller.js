@@ -62,7 +62,7 @@ const editUsers = async (req, res) => {
     '_id': id
   };
 
-  Users.findOneAndUpdate(query, users, { upsert: true }, (err, item) => {
+  Users.findOneAndUpdate(query, users, {upsert: true}, (err, item) => {
     if (err)
       return res.send(500, {
         error: err
@@ -154,7 +154,7 @@ const signup = async (req, res, next) => {
   let existingUser;
 
   try {
-    existingUser = await Users.findOne({ email: email });
+    existingUser = await Users.findOne({email: email});
   } catch (err) {
     const error = new HttpError(
       'Signing up failed, please try again later.',
@@ -191,12 +191,12 @@ const signup = async (req, res, next) => {
     await createdUser.save();
   } catch (err) {
     const error = new HttpError('Signing up failed, please try again.', 500);
-    res.json({ message: 'Signing up failed, please try again.', login: 0 });
+    res.json({message: 'Signing up failed, please try again.', login: 0});
     return next(error);
   }
 
   res.status(201).json({
-    user: createdUser.toObject({ getters: true }),
+    user: createdUser.toObject({getters: true}),
     login: 1,
     name: createdUser.name,
     type: createdUser.type,
@@ -207,23 +207,23 @@ const signup = async (req, res, next) => {
 
 // method to login
 const login = async (req, res, next) => {
-  const { email, password } = req.body;
+  const {email, password} = req.body;
   let existingUser;
 
   try {
-    existingUser = await Users.findOne({ email: email });
+    existingUser = await Users.findOne({email: email});
   } catch (err) {
     const error = new HttpError(
       'Login up failed, please try again later.',
       500
     );
-    res.json({ message: 'Login up failed, please try again later.', login: 0 });
+    res.json({message: 'Login up failed, please try again later.', login: 0});
     return next(error);
   }
 
   if (!existingUser || existingUser.password !== password) {
     const error = new HttpError('Invalid username or password.', 401);
-    res.json({ message: 'Invalid username or password', login: 0 });
+    res.json({message: 'Invalid username or password', login: 0});
     return next(error);
   }
 

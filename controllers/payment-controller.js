@@ -62,7 +62,7 @@ const editPayments = async (req, res) => {
     '_id': id
   };
 
-  Payments.findOneAndUpdate(query, payments, { upsert: true }, (err, item) => {
+  Payments.findOneAndUpdate(query, payments, {upsert: true}, (err, item) => {
     if (err)
       return res.send(500, {
         error: err

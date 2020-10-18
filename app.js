@@ -61,12 +61,32 @@ const options = {
   dbName: dbName
 };
 
-mongoose
-  .connect(uri, options)
-  .then(() => {
-    app.listen(port);
-    console.log(`Server is running on port: ${port}`);
-  })
-  .catch((error) => {
-    console.log(error);
-  });
+if (process.env.NODE_ENV === 'test') {
+  const Mockgoose = require('mockgoose').Mockgoose;
+  const mockgoose = new Mockgoose(mongoose);
+
+  mockgoose.prepareStorage()
+    .then(() => {
+      mongoose.connect(uri,
+        {useNewUrlParser: true, useCreateIndex: true})
+        .then((res, err) => {
+          app.listen(5000, function () {
+            console.log('Example app listening on port 8000!');
+          });
+          if (err) return reject(err);
+          resolve();
+        })
+    })
+} else {
+  mongoose
+    .connect(uri, options)
+    .then(() => {
+      app.listen(port);
+      console.log(`Server is running on port: ${port}`);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}
+
+module.exports = app

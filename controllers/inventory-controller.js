@@ -66,7 +66,7 @@ const editInventories = async (req, res) => {
     '_id': id
   };
 
-  Inventories.findOneAndUpdate(query, inventories, { upsert: true }, (err, item) => {
+  Inventories.findOneAndUpdate(query, inventories, {upsert: true}, (err, item) => {
     if (err)
       return res.send(500, {
         error: err

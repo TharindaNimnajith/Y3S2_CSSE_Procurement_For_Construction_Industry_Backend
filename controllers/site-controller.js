@@ -57,7 +57,7 @@ const editSites = async (req, res) => {
     '_id': id
   };
 
-  Sites.findOneAndUpdate(query, sites, { upsert: true }, (err, item) => {
+  Sites.findOneAndUpdate(query, sites, {upsert: true}, (err, item) => {
     if (err)
       return res.send(500, {
         error: err
