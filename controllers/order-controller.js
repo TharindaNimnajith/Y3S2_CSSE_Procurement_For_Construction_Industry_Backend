@@ -231,7 +231,7 @@ const addInvoiceOrder = async (req, res, next) => {
   });
 };
 
-// method to edit edit order reject reason proc staff
+// method to edit order with reject reason procurement staff
 const editOrderRejectReasonPS = async (req, res, next) => {
   let order;
 
@@ -266,7 +266,7 @@ const editOrderRejectReasonPS = async (req, res, next) => {
   });
 };
 
-// method to edit edit order reject reason supplier
+// method to edit order with reject reason supplier
 const editOrderRejectReasonSup = async (req, res, next) => {
   let order;
 
@@ -301,7 +301,7 @@ const editOrderRejectReasonSup = async (req, res, next) => {
   });
 };
 
-// method to edit edit order reject reason delivery manager
+// method to edit order with reject reason delivery manager
 const editOrderRejectReasonDM = async (req, res, next) => {
   let order;
 

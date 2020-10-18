@@ -3,7 +3,8 @@ const autoIncrement = require('mongoose-auto-increment');
 const uniqueValidator = require('mongoose-unique-validator');
 
 const Schema = mongoose.Schema;
-//payment model
+
+// payment model
 const PaymentSchema = new Schema({
   paymentId: {
     type: Number,
